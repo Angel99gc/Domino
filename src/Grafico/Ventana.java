@@ -5,134 +5,19 @@
  */
 package Grafico;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferStrategy;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
-
 /**
  *
- * @author marco
+ * @author ADMIN
  */
-public class Ventana extends JFrame implements Runnable,MouseListener {
-    Metodos met=new Metodos();
+public class Ventana {
 
-    @Override
-    public void mouseClicked(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Juego juego = new Juego();
+        juego.setVisible(true);
     }
-
-    @Override
-    public void mousePressed(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseExited(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    static final int width=1365,height=720;
-    Canvas canvas;
-    BufferStrategy bS;
-    Graphics g;
-    private Thread thread;
-    private boolean running = false;
-    
-    public Ventana(){
-        setTitle("Que mira compa");
-        setSize(width,height);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-        canvas=new Canvas();
-        canvas.setPreferredSize(new Dimension(width,height));
-        canvas.setMaximumSize(new Dimension(width,height));
-        canvas.setMinimumSize(new Dimension(width,height));
-        canvas.setFocusable(true);
-        add(canvas);
-    
-        setVisible(true);
-    
-        met.cargarFichas();
-        start();
-        
-    
-    }
-    public static void main(String[] args){
-        
-        new Ventana().start();
-        
-    }
-    
-    public void update(){
-        
-    }
-    
-    private void draw(){ /*Pinta*/
-        bS = canvas.getBufferStrategy();
-        
-        if (bS == null){
-            canvas.createBufferStrategy(3);
-            return;
-        }
-        
-        g = bS.getDrawGraphics();
-        //Aqui para abajo se dibuja
-       Ficha aux=met.inicioF;
-       int cont=0;
-       int cont2=0;
-       while(aux!=null){ /*dibuja todas las fichas*/
-           g.drawImage(aux.imagen,cont,cont2,null);
-               cont+=29;
-               aux=aux.sigF;
-       }
-       
-       
-       
-       ///Termina Dibujo        
-        g.dispose();
-        bS.show();
-    }
-    
-    private void start(){
-        thread = new Thread(this);
-        thread.start();
-        running=true;
-    }
-   
-    private void stop(){
-        try {
-            thread.join();
-            running=false;
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @Override
-    public void run() {
-        while(running){
-            //lo que hara la ventana
-            update();
-            draw();
-        }
-        stop();
-    }
-    
     
 }
