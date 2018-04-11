@@ -20,7 +20,7 @@ public class Metodos {
     Ficha inicioF,finF;
     
     
-    public void cargarFichas(){
+    public void cargarFichas(){ /*crea todas las 28 fichas con su respectiva imagen extrayendola.*/
         int cont1=0;
         int cont2=0;
         for(int i=0; i<28;i++){

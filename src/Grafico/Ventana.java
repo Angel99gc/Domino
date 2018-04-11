@@ -9,6 +9,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,8 +20,33 @@ import javax.swing.JFrame;
  *
  * @author marco
  */
-public class Ventana extends JFrame implements Runnable{
+public class Ventana extends JFrame implements Runnable,MouseListener {
     Metodos met=new Metodos();
+
+    @Override
+    public void mouseClicked(MouseEvent me) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent me) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     static final int width=1365,height=720;
     Canvas canvas;
     BufferStrategy bS;
@@ -56,7 +83,7 @@ public class Ventana extends JFrame implements Runnable{
         
     }
     
-    private void draw(){
+    private void draw(){ /*Pinta*/
         bS = canvas.getBufferStrategy();
         
         if (bS == null){
@@ -69,12 +96,14 @@ public class Ventana extends JFrame implements Runnable{
        Ficha aux=met.inicioF;
        int cont=0;
        int cont2=0;
-       while(aux!=null){
-       
+       while(aux!=null){ /*dibuja todas las fichas*/
            g.drawImage(aux.imagen,cont,cont2,null);
                cont+=29;
                aux=aux.sigF;
        }
+       
+       
+       
        ///Termina Dibujo        
         g.dispose();
         bS.show();
